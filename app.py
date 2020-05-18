@@ -26,17 +26,22 @@ def hello_world():
         npimg = numpy.fromstring(filestr, numpy.uint8)
         # convert numpy array to image
         img = cv2.imdecode(npimg,cv2.IMREAD_COLOR)
-        img = object_detection(image_bytes=img)
-        #cv2.imwrite('static/leaf_image.png',img)
-        retval, buffer_img= cv2.imencode('.jpg', img)
-        data = base64.b64encode(buffer_img).decode('utf-8')
-        dim = (256, 256)
-        # resize image
-        image = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
-	#leaf_image = os.path.join(app.config['UPLOAD_FOLDER'], 'leaf_image.png')
-        foreground_image = background_removal(image_bytes=image)
-        top1_prob, disease_name, top3_disease, top3_prob = get_plant_disease(image_bytes=foreground_image)
-        return render_template('result2.html', leaf_image=data ,disease=disease_name, probability=top1_prob, top3= top3_disease, top3_prob= top3_prob)
+        valid=0
+        img,valid = object_detection(image_bytes=img,val=valid) 
+        #cv2.imwrite('static/leaf_photo/leaf_image.png',img)
+        if (valid==1):
+            #base64 encoding for displaying image on webpage 
+            retval, buffer_img= cv2.imencode('.jpg', img)   
+            data = base64.b64encode(buffer_img).decode('utf-8')
+            # resize image
+            dim = (256, 256)
+            image = cv2.resize(img, dim, interpolation = cv2.INTER_AREA) 
+            #leaf_image = os.path.join(app.config['UPLOAD_FOLDER'], 'leaf_image.png')
+            foreground_image = background_removal(image_bytes=image)
+            top1_prob, disease_name, top3_disease, top3_prob = get_plant_disease(image_bytes=foreground_image)
+            return render_template('result.html', leaf_image=data ,disease=disease_name, probability=top1_prob, top3= top3_disease, top3_prob= top3_prob)
+        else:
+            return render_template('wrong_image.html')
 
 
 if __name__ == '__main__':
