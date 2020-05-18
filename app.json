@@ -1,0 +1,5 @@
+{
+    "name":"Plant Disease",
+    "description": "Detection using PyTorch",
+    "keywords": ["python", "flask", "pytorch", "bootstrap"]
+}

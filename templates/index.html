@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Plant Disease Detection</title>
+    <style>
+        .center {
+            margin: auto;
+            width: 50%;
+            //border: 3px solid green;
+            padding: 32px;
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+        body {
+            background-color: lightgoldenrodyellow;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .bottom {
+            margin-bottom: 1.5cm;
+        }
+        .button {
+            background-color:seagreen; 
+            color: white;
+            padding: 19px 50px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 21px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .file_uploader {
+            background-color:powderblue; 
+            border: black;
+            color: black;
+            padding: 15px 60px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <img src="static/logo.jpg" alt="logo" class="bottom">
+        <h2 ><span style="font-size:32px; color:seagreen">Upload the leaf image</span></h2>
+        <form method="POST" enctype="multipart/form-data">       
+            <input class="file_uploader" type="file" name="file">
+            <button class="button" type="submit" value="detect">DETECT</button>
+        </form>
+    </div>
+</body>
+</html>

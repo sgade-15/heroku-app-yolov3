@@ -1,0 +1,13 @@
+{
+    "Bacterial Spot": 0,
+    "Early Blight": 1,
+    "Late Blight": 2,
+    "Leaf Miner Flies": 3,
+    "Leaf Mold": 4,
+    "Septoria Leaf Spot": 5,
+    "Spider Mites": 6,
+    "Target Spot": 7,
+    "Yellow Leaf Curl Virus": 8,
+    "Healthy": 9,
+    "Mosaic Virus": 10
+}
