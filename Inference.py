@@ -36,7 +36,7 @@ def get_plant_disease(image_bytes):
     #print(top3_prob)
     return top1_prob, disease_name, top3_disease, top3_prob
 
-def object_detection(image_bytes):
+def object_detection(image_bytes,val):
     # Load Yolo
     net = cv2.dnn.readNet("yolov3_training_last.weights", "yolov3_testing.cfg")
     layer_names = net.getLayerNames()
@@ -71,21 +71,26 @@ def object_detection(image_bytes):
                 boxes.append([x, y, w, h])
                 confidences.append(float(confidence))
                 class_ids.append(class_id)
-    i = confidences.index(max(confidences)) 
-    #print(boxes)
-    x0, y0, w, h = boxes[i]
-    x1=x0+w
-    y1=y0+h
-    if (x0<0):
-        x0=0
-    if(x0+w>=width):
-        x1=width-1
-    if (y0<0):
-        y0=0
-    if(y0+h>=height):
-        y1=height-1
-    crop_img = img[y0:y1, x0:x1]
-    return(crop_img)
+    if(len(boxes)==0):
+        crop_img=img
+        val = 0
+    else:
+        i = confidences.index(max(confidences)) 
+        #print(boxes)
+        x0, y0, w, h = boxes[i]
+        x1=x0+w
+        y1=y0+h
+        if (x0<0):
+            x0=0
+        if(x0+w>=width):
+            x1=width-1
+        if (y0<0):
+            y0=0
+        if(y0+h>=height):
+            y1=height-1
+        crop_img = img[y0:y1, x0:x1]
+        val=1
+    return(crop_img,val)
 
 def background_removal(image_bytes):
     #cv2.imwrite('static/leaf.png',image_bytes)
