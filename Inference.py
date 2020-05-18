@@ -120,7 +120,7 @@ def background_removal(image_bytes):
     edges_8u = cv2.medianBlur(edges_8u, 3)
 
     def findSignificantContour(edgeImg):
-        _,contours, hierarchy = cv2.findContours(
+        contours, hierarchy = cv2.findContours(
             edgeImg,
             cv2.RETR_TREE,
             cv2.CHAIN_APPROX_SIMPLE
