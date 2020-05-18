@@ -11,9 +11,8 @@ with open(r'name_to_cat.json') as f:
     name_to_cat = json.load(f)
 cat_to_name = {v: k for k, v in name_to_cat.items()}
 
-model = get_model()
-
 def get_plant_disease(image_bytes):
+    model = get_model()
     tensor=get_tensor(image_bytes)
     outputs = model(tensor)
     _, predicted = torch.max(outputs, 1)
