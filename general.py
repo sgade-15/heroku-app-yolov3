@@ -6,7 +6,7 @@ from PIL import Image
 import torchvision.transforms as transforms
 
 def get_model():
-    checkpoint = torch.load(r'whiteclassifier_squeezenet_m2.pth', map_location='cpu')
+    checkpoint = torch.load(r'finetuning_squeezenet_final.pth', map_location='cpu')
     
     model_ft = models.squeezenet1_0(pretrained=True)
     for parameter in model_ft.parameters():
