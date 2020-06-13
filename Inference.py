@@ -106,7 +106,7 @@ def background_removal(image_bytes):
     hsv = cv2.bilateralFilter(src,15,50,50)
     hsv = cv2.cvtColor(hsv, cv2.COLOR_BGR2HSV)
 
-    mask = cv2.inRange(hsv, (18, 70, 0), (86, 225,255))
+    mask = cv2.inRange(hsv, (20, 70, 0), (86, 225,255))
 
 
     ## slice the green
